@@ -12,7 +12,8 @@ const initialValues={
     social :{
         facebook :'',
         twitter :''
-    }
+    },
+    phoneNumbers:['','']
 };
 // const validate= values =>{
 //     let errors={};
@@ -96,7 +97,14 @@ export const YouTubeForm = () => {
             <label htmlFor="twitter">Twitter</label>
             <Field type="text" id="twitter" name="social.twitter"/>
         </div>
-
+        <div className="form-control">
+            <label htmlFor="Primary Ph">Primary PhoneNumber</label>
+            <Field type="text" id="primaryPh" name="phoneNumbers[0]"/>
+        </div>
+        <div className="form-control">
+            <label htmlFor="Secondary Ph">Secondary PhoneNumber</label>
+            <Field type="text" id="SecondaryPh" name="phoneNumbers[1]"/>
+        </div>
 
         <button type="submit">Submit</button>  
         </Form>
