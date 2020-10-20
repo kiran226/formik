@@ -37,6 +37,14 @@ const validationSchema = Yup.object({
     email : Yup.string().email("Invalid email format").required("Required"),
     channel : Yup.string().required("Required")
 })
+//Field level validation
+const validateComments=value=>{
+    let error;
+    if(!value){
+        error="Required"
+    }
+    return error;
+}
 const onSubmit = values =>{
     console.log("Form Data", values);
 }
@@ -48,8 +56,8 @@ export const YouTubeForm = () => {
         <Formik initialValues={initialValues}
          validationSchema={validationSchema}
          onSubmit={onSubmit}
-         validateOnChange={false}
-         validateOnBlur={false}
+        //  validateOnChange={false}
+        //  validateOnBlur={false}
         >
         <Form>
         <div className="form-control">
@@ -74,7 +82,8 @@ export const YouTubeForm = () => {
         </div>
         <div className="form-control">
             <label htmlFor="commetns">Comments</label>
-            <Field as="textarea" id="comments" name="comments"/>
+            <Field as="textarea" id="comments" name="comments" validate={validateComments}/>
+            <ErrorMessage name="comments" component={TextError}/>
         </div>
         <div className="form-control">
         {/* render props pattern */}
