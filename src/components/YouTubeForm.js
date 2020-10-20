@@ -53,6 +53,7 @@ export const YouTubeForm = () => {
             <label htmlFor="email">Email</label>
             <Field type="email" id="email" name="email"/>
             <ErrorMessage name='email'>
+                {/* render props pattern */}
                 {(errorMes)=>{
                    return( <div className="error">{errorMes}</div> )
                 }}
@@ -68,18 +69,17 @@ export const YouTubeForm = () => {
             <Field as="textarea" id="comments" name="comments"/>
         </div>
         <div className="form-control">
+        {/* render props pattern */}
             <label htmlFor="address">Address</label>
-            <Field name="addresss">
+            <Field name="address">
                 {
                     (props)=>{
-                        const {field,form,meta}=props
-                        console.log("Render props",props)
-                        return (
-                            <div>
-                                <input type="text" id="address" {...field}/>
-                                {meta.touched && meta.error ? <div>{meta.error}</div> : null}
-                            </div>
-                        )   
+                        const {field,form,meta}=props;
+                        console.log("Render props", props);
+                        return (<div>
+                                 <input type="text" id="address" {...field}/>
+                                 {meta.touched && meta.error ? <div>{meta.error}</div>: null }
+                                </div>)
                     }
                 }
             </Field>
