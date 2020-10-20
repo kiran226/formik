@@ -1,5 +1,5 @@
 import React from 'react'
-import { Formik,Form,Field,ErrorMessage,FieldArray } from 'formik';
+import { Formik,Form,Field,ErrorMessage,FieldArray,FastField } from 'formik';
 import * as Yup from 'yup';
 import { TextError } from './TextError';
 
@@ -77,18 +77,19 @@ export const YouTubeForm = () => {
         <div className="form-control">
         {/* render props pattern */}
             <label htmlFor="address">Address</label>
-            <Field name="address">
+            <FastField name="address">
                 {
                     (props)=>{
                         const {field,form,meta}=props;
-                        console.log("Render props", props);
+                        {/* console.log("Render props", props); */}
+                        console.log("Field render");
                         return (<div>
                                  <input type="text" id="address" {...field}/>
                                  {meta.touched && meta.error ? <div>{meta.error}</div>: null }
                                 </div>)
                     }
                 }
-            </Field>
+            </FastField>
         </div>
         <div className="form-control">
             <label htmlFor="facebook">Facebook</label>
@@ -115,7 +116,7 @@ export const YouTubeForm = () => {
                         const {push,remove,form}= fieldArrayProps;
                         const {values} = form;
                         const {phNumbers}= values;
-                        console.log("Field Array Props", fieldArrayProps);
+                        {/* console.log("Field Array Props", fieldArrayProps); */}
                         return(
                             <div>
                                 {phNumbers.map((phNumber,index)=>(
