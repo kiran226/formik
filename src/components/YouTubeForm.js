@@ -8,7 +8,11 @@ const initialValues={
     email:'',
     channel:'',
     comments:'',
-    address :''
+    address :'',
+    social :{
+        facebook :'',
+        twitter :''
+    }
 };
 // const validate= values =>{
 //     let errors={};
@@ -84,6 +88,16 @@ export const YouTubeForm = () => {
                 }
             </Field>
         </div>
+        <div className="form-control">
+            <label htmlFor="facebook">Facebook</label>
+            <Field type="text" id="facebook" name="social.facebook"/>
+        </div>
+        <div className="form-control">
+            <label htmlFor="twitter">Twitter</label>
+            <Field type="text" id="twitter" name="social.twitter"/>
+        </div>
+
+
         <button type="submit">Submit</button>  
         </Form>
         </Formik>
