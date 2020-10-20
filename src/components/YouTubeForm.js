@@ -1,5 +1,5 @@
 import React from 'react'
-import { Formik,Form,Field,ErrorMessage } from 'formik';
+import { Formik,Form,Field,ErrorMessage,FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { TextError } from './TextError';
 
@@ -13,7 +13,8 @@ const initialValues={
         facebook :'',
         twitter :''
     },
-    phoneNumbers:['','']
+    phoneNumbers:['',''],
+    phNumbers:['']
 };
 // const validate= values =>{
 //     let errors={};
@@ -104,6 +105,34 @@ export const YouTubeForm = () => {
         <div className="form-control">
             <label htmlFor="Secondary Ph">Secondary PhoneNumber</label>
             <Field type="text" id="SecondaryPh" name="phoneNumbers[1]"/>
+        </div>
+
+        <div className="form-control">
+            <label>List of Phone Numbers</label>
+            <FieldArray name="phNumbers">
+                {
+                    (fieldArrayProps)=>{
+                        const {push,remove,form}= fieldArrayProps;
+                        const {values} = form;
+                        const {phNumbers}= values;
+                        console.log("Field Array Props", fieldArrayProps);
+                        return(
+                            <div>
+                                {phNumbers.map((phNumber,index)=>(
+                                        <div key={index}>
+                                        <Field name={`phNumbers[${index}]`}/>
+                                        {index>0 &&
+                                            <button type="button" onClick={()=>remove(index)}>-</button>
+                                         }
+                                        <button type="button" onClick={()=>push(``)}>+</button>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                        )
+                    }
+                }
+            </FieldArray>
         </div>
 
         <button type="submit">Submit</button>  
