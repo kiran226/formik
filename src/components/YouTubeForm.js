@@ -48,6 +48,8 @@ export const YouTubeForm = () => {
         <Formik initialValues={initialValues}
          validationSchema={validationSchema}
          onSubmit={onSubmit}
+         validateOnChange={false}
+         validateOnBlur={false}
         >
         <Form>
         <div className="form-control">
@@ -116,6 +118,7 @@ export const YouTubeForm = () => {
                         const {push,remove,form}= fieldArrayProps;
                         const {values} = form;
                         const {phNumbers}= values;
+                        console.log("Form errors",form.errors);
                         {/* console.log("Field Array Props", fieldArrayProps); */}
                         return(
                             <div>
@@ -123,9 +126,9 @@ export const YouTubeForm = () => {
                                         <div key={index}>
                                         <Field name={`phNumbers[${index}]`}/>
                                         {index>0 &&
-                                            <button type="button" onClick={()=>remove(index)}>-</button>
+                                            <button type="button" onClick={()=>remove(index)}>{''}-{''}</button>
                                          }
-                                        <button type="button" onClick={()=>push(``)}>+</button>
+                                        <button type="button" onClick={()=>push(``)}>{''}+{''}</button>
                                         </div>
                                     )
                                 )}
